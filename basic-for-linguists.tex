@@ -1,0 +1,565 @@
+% Note: the '%' symbol is a comment symbol; LaTeX won't process anything following on the same line
+
+% PREAMBLE - this specifies various options and loads packages
+\documentclass{article}
+
+% examples of loading packages:
+\usepackage{linguex}   % example package for lazy linguists
+\usepackage{qtree}     % for easy basic trees
+\usepackage{stmaryrd}  % adds the evaluation brackets for semantics
+\usepackage{graphicx}  % include images
+\usepackage[dvipsnames]{xcolor} % extra colours
+\usepackage[colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = white, %Colour of citations
+  pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt  
+]{hyperref}  % hyperlink package
+\usepackage{fancyvrb}  % for boxed code examples
+\usepackage{wrapfig}   % for wrapping text around images
+\usepackage{forest}    % for advanced trees
+\usepackage{simpsons}  % Simpsons
+\usepackage{tipa}      % diacritics
+\usepackage{tcolorbox} % fancier boxes
+\usepackage{hologo}    % for XeLaTeX logo
+\usepackage{dingbat}   % for pointing hand
+\usepackage[margin=1.55in]{geometry}  % set margins
+% \usepackage{coffee}    % coffee stains
+
+% some mathematics packages
+\usepackage{amsmath,amsthm,amscd}
+\usepackage{amssymb}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+
+\title{\sffamily Basic \LaTeX\ for Linguists} % title
+\author{\sffamily\bfseries\href{https://slade.jnanam.net}{Benjamin Slade}} % author
+\date{v0.1}
+% leave out \date{..} and let TeX  automagically generate the date, or use \date{30 January 1970} to manually-specify a date
+
+% let's make our own command here:
+\newcommand\denotes[1]{\ensuremath{\llbracket\textrm{#1}\rrbracket}}
+\newcommand{\fancydenotes}[2][]{\ensuremath{\llbracket\textrm{#2}\rrbracket^{#1}}}
+
+\setlength\parindent{0pt} % I'm disabling auto-indentation for the purposes of this example text, but you won't generally want to do this
+
+% END PREAMBLE  - end of specifications, options...
+
+ \emergencystretch 3em%
+
+
+\begin{document} %BEGIN ACTUAL DOCUMENT
+\maketitle
+
+\section{Introduction}
+A working draft of a quick ``\LaTeX-in-half-an-hour'' guide for linguists.
+
+\section{Install \LaTeX, download a \LaTeX\ editor}
+Install \TeX Live (free, open-source software) following the instructions appropriate for your operating system: \url{https://www.tug.org/texlive/quickinstall.html}.\\
+
+There are heaps of \LaTeX\ editors, as you can see from, for instance, \url{https://tex.stackexchange.com/questions/339/latex-editors-ides} or \url{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}.\\
+
+Lots of high-powered text editors have \LaTeX\ plugins, including Emacs, Vim, Visual Studio Code, etc.\@\\
+
+I like using \href{https://en.wikipedia.org/wiki/Emacs}{Emacs} with the
+\href{https://en.wikipedia.org/wiki/AUCTeX}{AUCTeX} package, but these
+sorts of text editors have their own learning curves. So that you aren't
+adding yet another learning curve that the one you already have with
+\LaTeX, using one of these simpler \LaTeX-specialised editors might be
+good, at least to begin with:
+
+\begin{itemize}
+\item \href{http://www.texstudio.org/}{TeXstudio}: \url{http://www.texstudio.org}
+\item \href{http://www.xm1math.net/texmaker/}{TeXmaker}: \url{http://www.xm1math.net/texmaker}
+\item \href{http://www.tug.org/texworks/}{TeXworks}: \url{http://www.tug.org/texworks}
+\end{itemize}
+
+All of these are free (no cost) and open-source (as are the high-powered text editors mentioned above). These will make producing \LaTeX\ documents much easier, though in principle you could hand-type \LaTeX\ code anywhere.\\
+
+You could also use an online service like \href{https://www.overleaf.com}{Overleaf}, but it's nice to have a local \TeX\ installation.\\
+
+The following sections include actual \LaTeX\ code in {\color{ForestGreen}\fbox{boxed in green}} with the corresponding output shown in \fbox{black box}. You can copy and paste the green code into your editor, and/or inspect \href{./basic-for-linguists.tex}{the \texttt{.tex} file} from which this \texttt{.pdf} was generated.
+
+\section{Basic Document}
+The basic \LaTeX document consists of a \textsc{preamble} followed by the actual content of your document. So a \LaTeX\ file might look like this:\footnote{Note: the `\texttt{\%}' symbol is a comment symbol; \LaTeX\ won't process anything following \texttt{\%} on the same line. I provide comments just to indicate what each thing does, but they aren't necessary and \LaTeX\ just ignores them.}
+
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+            % PREAMBLE BEGINS HERE
+\documentclass{article}     % specify type of document 
+
+\usepackage{linguex}        % example package for lazy linguists
+\usepackage{qtree}          % for easy basic trees
+\usepackage{forest}         % for advanced trees
+\usepackage{stmaryrd}       % add semantic evaluation brackets
+\usepackage{graphicx}       % include images
+\usepackage{simpsons}       % Simpsons characters
+% some mathematics packages
+\usepackage{amsmath,amsthm,amscd}
+\usepackage{amssymb}
+\usepackage[all]{xy}
+
+\title{Your Title Here}     % title
+\author{Some Linguist}      % author
+             % PREAMBLE ENDS HERE
+
+\begin{document}            % start of actual document
+
+\maketitle                  % this auto-produces a title for you
+
+Hello, world!
+                            % your actual content would be here
+......                      
+
+\end{document}              % document ends here
+\end{Verbatim}
+
+
+This will produce a document that looks something like this:
+
+\fbox{\begin{minipage}{\textwidth}
+\begin{center}
+  \huge Your Title Here\\
+  \vspace{.7em}
+  \large Some Linguist\\
+  \vspace{.7em}
+  \large 11 February 2019
+\end{center}
+
+Hello, world!
+
+.....\end{minipage}}\\
+
+Not very exciting yet of course. You can, however, copy the above code into your \LaTeX\ editor (save it as \texttt{testing.tex} or whatever) and try it out, and use it as the basis for the following extended examples, just entering or pasting the commands somewhere in-between \texttt{\textbackslash begin\{document\}} and \texttt{\textbackslash end\{document\}}.
+
+%\pagebreak
+\section{Basic formatting}
+Putting the following \LaTeX\ code between \texttt{\textbackslash begin\{document\}} and \texttt{\textbackslash end\{document\}}:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+``some text in quotes''\\
+\textbf{some bold text}\\
+\textit{some italic text}\\
+\textsl{some slanted text}\\
+\texttt{some typewriter-style text}\\
+\textsf{some sans serif text}\\
+\textsc{some smallcaps text}
+\end{Verbatim}
+
+produces:\\
+
+\fbox{\begin{minipage}{\textwidth}
+``some text in quotes''\\
+\textbf{some bold text}\\
+\textit{some italic text}\\
+\textsl{some slanted text}\\
+\texttt{some typewriter-style text}\\
+\textsf{some sans serif text}\\
+\textsc{some smallcaps text}
+\end{minipage}}\\
+
+
+Your \LaTeX\ editor should have these formatting things as commands bound
+to shortcut keys, just like in a word-processor, so if you select some text
+and hit \textbf{Ctrl-B} your editor should wrap \texttt{\textbackslash
+textbf\{...\}} around the selected text.\footnote{The
+  \texttt{\textbackslash\textbackslash} at the ends of the lines just adds
+  a line-break.}
+
+\ \ \ \ You also don't need to worry about spacing for the most part. \LaTeX\ will take care it for you. You like entering two spaces after a full stop? Great. One space? Also great. Twelve spaces? No problem.
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  Note  how    many    arbitrary spaces     I'm      putting     
+  in. \LaTeX\ doesn't     care. It'll  just do  the right     thing.
+\end{Verbatim}
+}
+
+\LaTeX, nevertheless, produces sanely formatted text:\footnote{If you actually do want to make sure \LaTeX\ inserts spaces exactly as you have them, you can use ``\texttt{\textbackslash }'' (that is, a backslash followed by a space, for each space you want. Or you can insert horizontal space with a command like \texttt{\textbackslash hspace\{1in\}}.} 
+
+\fbox{\begin{minipage}{\textwidth}
+  Note  how    many     arbitrary spaces     I'm      putting     
+  in. \LaTeX\ doesn't     care. It'll  just do  the right     thing.
+\end{minipage}}\\
+
+Once you get the basics of \LaTeX\ down, then you can just worry about the content and let \LaTeX\ worry about making it \href{https://tex.stackexchange.com/questions/1319/showcase-of-beautiful-typography-done-in-tex-friends}{look beautiful}.
+
+\pagebreak
+\section{Basic sectioning and footnotes}
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \section{My first main section}
+  Some text here.
+
+  \subsection{A subsection}
+  More text here.
+
+  \subsubsection{A subsubsection}
+  Even more text here.
+\end{Verbatim}
+
+produces:\\
+
+\setcounter{section}{0} % reset section numbering for example
+
+\fbox{\begin{minipage}{\textwidth}
+  \section{My first main section}
+  Some text here.
+  
+  \subsection{A subsection}
+  More text here.
+  
+  \subsubsection{A subsubsection}
+  Even more text here.
+\end{minipage}}\\
+
+\setcounter{section}{4} % resume real section numbering
+
+You want footnotes?
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+You can easily add footnotes like so.\footnote{I'm a footnote!}
+The footnote will appear\footnote{I'm another footnote!} 
+wherever you insert the footnote command and \LaTeX\ will 
+automatically format and number\footnote{Here
+the footnotes appear as letters because of the special
+environment, but usually they'll appear as normal arabic
+numerals unless you specify otherwise.} them for you.
+\end{Verbatim}
+
+\fbox{\begin{minipage}{\textwidth}
+You can easily add footnotes like so.\footnote{I'm a footnote!}
+The footnote will appear\footnote{I'm another footnote!} 
+wherever you insert the footnote command and \LaTeX\ will 
+automatically format and number\footnote{Here
+the footnotes appear as letters because of the special
+environment, but usually they'll appear as normal arabic
+numerals unless you specify otherwise.} them for you.
+\end{minipage}}\\
+
+\ \ \ \ You can force a line-break with the command \texttt{\textbackslash\textbackslash}; you can force a page-break anywhere with the command \texttt{\textbackslash pagebreak}.
+
+\pagebreak
+\section{Easy numbered examples}
+Examples are easy with \href{http://mirrors.ctan.org/macros/latex/contrib/linguex/doc/linguex-doc.pdf}{\texttt{linguex}} (the example package for lazy linguists).
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \ex. A boring example without glossing.
+ 
+  \exg. Yah rahā ek hindī vākya\\
+        This remain.\textsc{past.masc.sg} one Hindi example\\
+        \trans ``This is a Hindi sentence.''
+\end{Verbatim}
+
+produces:
+
+\fbox{\begin{minipage}{\textwidth}
+\ex. A boring example without glossing.
+
+\exg. Yah rahā ek hindī vākya\\
+This remain.\textsc{past.masc.sg} one Hindi sentence\\
+\trans ``This is a Hindi sentence.''
+
+\end{minipage}}\\
+
+You can also add ``labels'' to your examples and then easily refer to them anywhere later (or earlier) in your text by referring to that example, as in the following \LaTeX\ code:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+In \ref{boring} and \ref{newhindi} below, you can see
+examples of labelled examples.
+  
+\ex. Another boring example without glossing.\label{boring}
+ 
+\exg. Yah rahā ek  aur hindī vākya\\
+     This remain.\textsc{past.masc.sg} one more Hindi example\\
+     \trans ``This is another Hindi sentence.''\label{newhindi}
+
+And you can refer to \ref{newhindi} and \ref{boring} anywhere
+else you want too, and \LaTeX\ will get the numbering right.
+\end{Verbatim}
+
+Which produces:
+
+\fbox{\begin{minipage}{\textwidth}
+In \ref{boring} and \ref{newhindi} below, you can see examples of labelled examples.
+  
+  \ex. Another boring example without glossing.\label{boring}
+ 
+  \exg. Yah rahā ek  aur hindī vākya\\
+        This remain.\textsc{past.masc.sg} one more Hindi example\\
+        \trans ``This is another Hindi sentence.''\label{newhindi}
+
+And you can refer to \ref{newhindi} and \ref{boring} anywhere else you want too, and \LaTeX\ will get the numbering right.
+\end{minipage}}\\
+
+You can also label and refer to sections, subsections, footnotes, tables, figures, etc.\@ in the same manner as well.
+
+\pagebreak
+\section{Including graphics}
+Having added the \texttt{graphicx} package to your preamble, you can place images in the same directory as your \texttt{.tex} file and use the command \texttt{\textbackslash includegraphics\{filename.extension\}} with an optional bracketed size specification, e.g.\@ assuming you have a file called \texttt{file\_extensions.png} in the same directory as your \texttt{.tex} file:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+\includegraphics[width=3in]{file_extensions.png}
+\end{Verbatim}
+
+\fbox{\begin{minipage}{\textwidth}
+\href{https://www.xkcd.com/1301/}{\includegraphics[width=3in]{file_extensions.png}}
+\end{minipage}}
+
+\pagebreak
+\section{Basic trees}
+There are a bunch of packages for drawing syntax trees in \LaTeX. A really good one for more complex trees is \href{http://mirrors.ctan.org/graphics/pgf/contrib/forest/forest-doc.pdf}{\texttt{forest}}, but for basic things you can use \href{http://mirrors.ctan.org/macros/latex/contrib/qtree/qtreenotes.pdf}{\texttt{qtree}} which has very straightforward syntax. Like this:
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+\Tree
+[.S [.DP [.D This ]] [.VP [.V is ] [.DP [.D a ] [.NP [.N tree ]]]]]
+\end{Verbatim}
+}
+
+For which the \texttt{qtree} package will produce:
+
+\fbox{\begin{minipage}{\textwidth}
+\Tree
+[.S [.DP [.D This ]] [.VP [.V is ] [.DP [.D a ] [.NP [.N tree ]]]]]
+\end{minipage}}
+
+\section{Semantics (and creating your own custom \LaTeX\ commands)}
+\LaTeX\ is incredibly useful for semantics, as \TeX was designed specially as a typesetting program for mathematical formulae and this is part of what formal semantics involves.\footnote{Nb: If you try to use a word-processor to write semantic formulae you will slowly drive yourself mad.}
+
+\LaTeX\ in addition to regular type-setting mode also has a ``math'' mode. You can enter this mode by wrapping your maths formula in \texttt{\$...\$} or else in \texttt{\textbackslash ( ...\textbackslash )}. You can also do superscripts and subscripts in math mode, using \texttt{\^} and \texttt{\_}, respectively:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  $x_{i_a} = 6y^{2^2} + 7$
+  
+  \(z_j = 7 - 6x^5\)
+\end{Verbatim}
+
+\fbox{\begin{minipage}{\textwidth}
+  $x_{i_a} = 6y^{2^2} + 7$
+  
+  \(z_j = 7 - 6x^5\)
+\end{minipage}}\\
+
+There are a number of special commands to get special symbols used for logic (and semantics), like \texttt{\textbackslash forall}, \texttt{\textbackslash exists}, which produce \(\forall, \exists\),  respectively.\footnote{Note: these only work in math mode, so you'll have wrap them in \texttt{\$...\$} or \texttt{\textbackslash ( ...\textbackslash )}.} In math mode, regular text will be set funny unless you switch back in normal roman text mode, e.g.:
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \(z = 8 + 9y^{x_a} , this is a formula but the typesetting is messed up\)\\
+  \(z = 8 + 9y^{x_a} , \textrm{this is a formula, properly set}\)
+\end{Verbatim}
+}
+
+Note that you need \texttt{\textbackslash textrm\{...\}} to get regular roman text; otherwise \LaTeX\ tries to typeset each letter like a mathematical variable, which is unlikely to be what you want in this case, as shown by the output:\\
+
+\fbox{\begin{minipage}{\textwidth}
+  \(z = 8 + 9y^{x_a} , this is a formula but the typesetting is messed up\)\\
+  \(z = 8 + 9y^{x_a} , \textrm{this is a formula, properly set}\)\end{minipage}}\\
+
+The \texttt{stmaryroad} package we loaded earlier gives us access to the special semantic evaluation brackets $\llbracket$, $\rrbracket$, produced with the (math mode only) commands \texttt{\textbackslash llbracket}, \texttt{\textbackslash rrbracket}, respectively.
+
+\subsection{Create your own \LaTeX\ commands}
+Finally, here we can also catch a glimpse of the power of \LaTeX\ by seeing how we can define our own commands.  While you could type out the brackets each time, e.g.:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \(\llbracket \textrm{every cat}\rrbracket =
+  \lambda{P}\forall{x}[\textit{Cat}(x) \rightarrow P(x)]\)
+\end{Verbatim}
+
+\fbox{\begin{minipage}{\textwidth}
+\(\llbracket \textrm{every cat}\rrbracket = \lambda{P}\forall{x}[\textit{Cat}(x) \rightarrow P(x)]\)
+\end{minipage}}\\
+
+you can also define your own command in the preamble, like so:   
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+....
+\newcommand\denotes[1]{\ensuremath{\llbracket\textrm{#1}\rrbracket}}
+....
+\end{Verbatim}
+}
+
+This command takes a single argument and places it between the evaluation brackets and sets it in normal roman type. Just now you can just use your new command \texttt{\textbackslash denotes} as follows:
+
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \denotes{every cat purrs} =
+  $\forall{x}[\textit{Cat}(x)\rightarrow\textit{Purr}(x)]$
+\end{Verbatim}
+
+producing:\\
+
+\fbox{\begin{minipage}{\textwidth}
+\denotes{every cat purrs} = $\forall{x}[\textit{Cat}(x)\rightarrow\textit{Purr}(x)]$
+\end{minipage}}\\
+
+Define once, use infinite times.
+
+\ \ \ \ And you can define much fancier custom commands like:
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+  \newcommand{\fancydenotes}[2][]
+  {\ensuremath{\llbracket\textrm{#2}\rrbracket^{#1}}}
+\end{Verbatim}
+  }
+
+
+which allow you to enter something like \texttt{\textbackslash(\textbackslash fancydenotes[t,w,M]\{every cat\}\textbackslash)} which takes optional arguments (passed via the square brackets) which get typeset as following superscripts, producing \(\fancydenotes[t,w,M]{every cat}\).
+
+
+\ \ \ \ And now we can combine trees and lambdas, e.g.:
+
+{\small
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+\hfill \textsf{Maria petted every cat.}
+\Tree [.{$[\forall{z}[\mathrm{Cat}(z)\rightarrow{\color{blue}\lambda{x}}
+ [\mathrm{Pet}({\color{blue}x},z)]]]{\color{purple}(m)}$=\\
+\fbox{$\forall{z}[\mathrm{Cat}(z)\rightarrow[\mathrm{Pet}(m,z)]]$}}
+ [.{$m$} ] [.{$[{\color{blue}\lambda\mathscr{R}}\forall{z}
+  [\mathrm{Cat}(z)\rightarrow{\color{blue}\mathscr{R}}(z)]]
+   {\color{purple}(\lambda{y}\lambda{x}[\mathrm{Pet}(x,y)])}$=\\
+$\forall{z}[\mathrm{Cat}(z)\rightarrow{\color{blue}
+  \lambda{y}}\lambda{x}[\mathrm{Pet}(x,{\color{blue}y})]
+    {\color{purple}(z)}]$=\\
+$\forall{z}[\mathrm{Cat}(z)\rightarrow\lambda{x}[\mathrm{Pet}(x,z)]]$}
+  [.{$\lambda{y}\lambda{x}[\mathrm{Pet}(x,y)]$} ]
+   [.{$[{\color{blue}\lambda{S}}\lambda\mathscr{R}\forall{z}
+    [{\color{blue}S}(z)\rightarrow\mathscr{R}(z)]]
+      {\color{purple}(\lambda{w}[\mathrm{Cat}(w)])}$=\\
+$\lambda\mathscr{R}\forall{z}[{\color{blue}\lambda{w}}
+  [\mathrm{Cat}({\color{blue}w})]{\color{purple}(z)}\rightarrow
+    \mathscr{R}(z)]$=\\
+$\lambda\mathscr{R}\forall{z}[\mathrm{Cat}(z)\rightarrow
+  \mathscr{R}(z)]$}
+   [.{$\lambda{S}\lambda\mathscr{R}\forall{z}[S(z)\rightarrow
+    \mathscr{R}(z)]$} ] [.{$\lambda{w}[\mathrm{Cat}(w)]$} ] ] ] ] 
+\end{Verbatim}
+}
+
+\fbox{\begin{minipage}{\textwidth}
+\hfill \textsf{Maria petted every cat.}
+\Tree [.{$[\forall{z}[\mathrm{Cat}(z)\rightarrow{\color{blue}\lambda{x}}
+ [\mathrm{Pet}({\color{blue}x},z)]]]{\color{purple}(m)}$=\\
+\fbox{$\forall{z}[\mathrm{Cat}(z)\rightarrow[\mathrm{Pet}(m,z)]]$}}
+ [.{$m$} ] [.{$[{\color{blue}\lambda\mathscr{R}}\forall{z}
+  [\mathrm{Cat}(z)\rightarrow{\color{blue}\mathscr{R}}(z)]]
+   {\color{purple}(\lambda{y}\lambda{x}[\mathrm{Pet}(x,y)])}$=\\
+$\forall{z}[\mathrm{Cat}(z)\rightarrow{\color{blue}
+  \lambda{y}}\lambda{x}[\mathrm{Pet}(x,{\color{blue}y})]
+    {\color{purple}(z)}]$=\\
+$\forall{z}[\mathrm{Cat}(z)\rightarrow\lambda{x}[\mathrm{Pet}(x,z)]]$}
+  [.{$\lambda{y}\lambda{x}[\mathrm{Pet}(x,y)]$} ]
+   [.{$[{\color{blue}\lambda{S}}\lambda\mathscr{R}\forall{z}
+    [{\color{blue}S}(z)\rightarrow\mathscr{R}(z)]]
+      {\color{purple}(\lambda{w}[\mathrm{Cat}(w)])}$=\\
+$\lambda\mathscr{R}\forall{z}[{\color{blue}\lambda{w}}
+  [\mathrm{Cat}({\color{blue}w})]{\color{purple}(z)}\rightarrow
+    \mathscr{R}(z)]$=\\
+$\lambda\mathscr{R}\forall{z}[\mathrm{Cat}(z)\rightarrow
+  \mathscr{R}(z)]$}
+   [.{$\lambda{S}\lambda\mathscr{R}\forall{z}[S(z)\rightarrow
+    \mathscr{R}(z)]$} ] [.{$\lambda{w}[\mathrm{Cat}(w)]$} ] ] ] ] 
+\end{minipage}}\\
+
+
+
+\ \ \ \  And really these are still very basic examples. The underlying \TeX\ markup language is actually Turing-complete, so you could in theory write anything you could in any other programming language (e.g.\@ Python, C, Lisp, Java, etc.). In practice, since \TeX\ is oriented towards type-setting, you're better off not attempting major programming feats (despite their theoretical possibility), but you certainly can create lots of your own commands which will save you lots of time and mental effort in the end. Here is a resource for more information on command creation: \url{https://www.overleaf.com/learn/latex/Commands}.
+
+\ \ \ \ Here are a couple of examples (the first taken from \href{https://www.tug.org/texshowcase/}{the \TeX\ Showcase}, the second from the \href{http://mirrors.ctan.org/graphics/pgf/contrib/forest/forest-doc.pdf}{\texttt{forest} manual}) which provide a hint of the creative power of \TeX, showing what can be created using customised commands and/or CTAN packages:
+
+
+%\CompileMatrices \[\xymatrix{ (M,h,z) \ar[dd]^{\pi_0} \ar[dr]^\alpha_\cong \ar[rr]^{\pi_1} && (M_1,h_1,0) \ar'[d]^-{\pi_{1d}}[dd] \ar[dr]^{\alpha_1}_\cong \\ & (M',h',z')\oplus H(\Lambda^k) \ar[dd]^<(.25){\pi_0} \ar[rr]^<(.25){\pi_1} && (M'_1,h'_1,0)\oplus H(\Lambda_1^k) \ar[dd]^{\pi_{1d}} \\ (M_0,h_0,z_0) \ar@{=}[dd] \ar[dr]^{\alpha_0}_\cong \ar'[r]^<(.6){\pi_{0d}}[rr] && (M_d,h_d,0) \ar@{=}'[d][dd] \ar[dr]^{\alpha_d}_\cong \\ & (M'_0,h'_0,z'_0)\oplus H(\Lambda_0^k) \ar[dd]^<(.25){\beta'_0\oplus\text{id}}_<(.25)\cong\ar[rr]^<(.25){\pi_{0d}} && (M'_d,h'_d,0)\oplus H(\Lambda_d^k) \ar[dd]^{\beta'_d\oplus\text{id}}_\cong \\ (M_0,h_0,z_0) \ar[dr]^{\beta_0}_\cong \ar'[r]^<(.6){\pi_{0d}}[rr] && (M_d,h_d,0) \ar[dr]^{\beta_d}_\cong \\ & (L,\lambda,x)\oplus H(\Lambda_0^k) \ar[rr]^{\pi_{0d}} && (L_d,\lambda_d,0)\oplus H(\Lambda_d^k) }\]
+
+\vspace{-.5em}
+\pgfmathsetseed{14285}
+\begin{forest}  random tree/.style n args={3}{
+    % #1 = max levels, #2 = max children, #3 = max content
+content/.pgfmath={random(0,#3)},    if={#1>0}{repeat={random(0,#2)}{append={[,random
+          tree={#1-1}{#2}{#3}]}}}{}},
+  before typesetting nodes={for tree={draw,s sep=2pt,rotate={int(30*rand)},l+={5*rand},
+ if={isodd(level())}{fill=green}{fill=yellow}}},
+  important/.style={draw=red,line width=1.5pt,edge={red,line width=1.5pt}},
+  before drawing tree={sort by=y, for nodewalk={min=tree,ancestors}{important,typeset node}}
+  [,random tree={9}{3}{100}]
+\end{forest}
+
+Note that these are \textsc{not} images, but are rather generated programmatically in \LaTeX\ with the following bits of code:
+
+{\scriptsize
+\begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
+%\CompileMatrices \[\xymatrix{ (M,h,z) \ar[dd]^{\pi_0} \ar[dr]^\alpha_\cong \ar[rr]^{\pi_1} && (M_1,h_1,0) \ar'[d]^-{\pi_{1d}}[dd] \ar[dr]^{\alpha_1}_\cong \\ & (M',h',z')\oplus H(\Lambda^k) \ar[dd]^<(.25){\pi_0} \ar[rr]^<(.25){\pi_1} && (M'_1,h'_1,0)\oplus H(\Lambda_1^k) \ar[dd]^{\pi_{1d}} \\ (M_0,h_0,z_0) \ar@{=}[dd] \ar[dr]^{\alpha_0}_\cong \ar'[r]^<(.6){\pi_{0d}}[rr] && (M_d,h_d,0) \ar@{=}'[d][dd] \ar[dr]^{\alpha_d}_\cong \\ & (M'_0,h'_0,z'_0)\oplus H(\Lambda_0^k) \ar[dd]^<(.25){\beta'_0\oplus\text{id}}_<(.25)\cong\ar[rr]^<(.25){\pi_{0d}} && (M'_d,h'_d,0)\oplus H(\Lambda_d^k) \ar[dd]^{\beta'_d\oplus\text{id}}_\cong \\ (M_0,h_0,z_0) \ar[dr]^{\beta_0}_\cong \ar'[r]^<(.6){\pi_{0d}}[rr] && (M_d,h_d,0) \ar[dr]^{\beta_d}_\cong \\ & (L,\lambda,x)\oplus H(\Lambda_0^k) \ar[rr]^{\pi_{0d}} && (L_d,\lambda_d,0)\oplus H(\Lambda_d^k) }\]
+
+\pgfmathsetseed{14285}
+\begin{forest}  random tree/.style n args={3}{
+    % #1 = max levels, #2 = max children, #3 = max content
+content/.pgfmath={random(0,#3)},    if={#1>0}{repeat={random(0,#2)}{append={[,random
+          tree={#1-1}{#2}{#3}]}}}{}},
+  before typesetting nodes={for tree={draw,s sep=2pt,rotate={int(30*rand)},l+={5*rand},
+ if={isodd(level())}{fill=green}{fill=yellow}}},
+  important/.style={draw=red,line width=1.5pt,edge={red,line width=1.5pt}},
+  before drawing tree={sort by=y, for nodewalk={min=tree,ancestors}{important,typeset node}}
+  [,random tree={9}{3}{100}]
+\end{forest}
+\end{Verbatim}
+}
+
+\subsubsection{Make use of the \LaTeX\ package ecosystem}
+The power of \LaTeX\ also means that lots of people have already designed fantastic add-on packages (which we've already used some in this document), most of which have equally good documentation. If there's something you'd like to be able to do in \LaTeX, or would like to be able to do more easily, chances are someone else has already thought of it and made a package to do it. Search/browse CTAN to see the full range of extension packages: \url{https://ctan.org/pkg/}.
+
+
+\section{Staring into $\aleph_{{\aleph}_{{\aleph}_{\aleph}}}$}
+
+There is rarely a single right way of doing something in \LaTeX. It's a  powerful tool, and like all good powerful tools it gives you lots of different ways of doing things. This also means you can \emph{always}
+learn something new in \LaTeX. 
+But you only need to know a fairly basic set of things to productively use \LaTeX\ (I wrote a dissertation in  \LaTeX\  knowing much less about \LaTeX\ than I know now:— which is still relatively little). Looking at other people's \texttt{.tex} files is often a ``cheap'' way of learning new things or figuring out problem in \LaTeX\ (though it can be illuminating to work out your own solutions as well). The \href{https://tex.stackexchange.com}{\{ \TeX\ \} StackExchange} site is a great place to browse or ask \LaTeX-related questions.
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \centering
+\href{https://xkcd.com/2109/}{\includegraphics[width=2in]{invisible_formatting.png}}
+\end{wrapfigure}
+
+
+\subsection{Get to know your text editor}
+Getting to know your text editor (as well as choosing a good/suitable text
+editor) can be extremely helpful to your productivity. \LaTeX\
+taking care of formatting and letting you concentrate on the content is
+great, but the power of a good, customisable text editor is also an often
+under-rated boon. (And you'll free yourself from a whole class of certain
+worries produced by word-processors, including the one pointed out in the xkcd comic seen on the right.) \hfill \leftpointright
+
+\subsubsection{Other packages to explore}
+For special phonetic (e.g.\@ IPA) characters, have a look at the \href{http://www.l.u-tokyo.ac.jp/~fkr/tipa/tipaman.pdf}{\texttt{tipa} package}. However, just using \href{http://xml.web.cern.ch/XML/lgc2/xetexmain.pdf}{\hologo{XeLaTeX}} is probably a better choice in the long-term as it allows you to use any font installed on your computer with the aid of the \href{http://mirrors.ctan.org/macros/latex/contrib/fontspec/fontspec.pdf}{\texttt{fontspec} package}. There are a number of other linguistics-related packages, including the \href{http://mirrors.ctan.org/macros/latex/contrib/ot-tableau/ot-tableau.pdf}{\texttt{ot-tableau} package} for Optimality Theory tableaux. Here is a listing of CTAN packages with ``linguistics'' as a keyword: \url{https://ctan.org/topic/linguistic}.
+
+\subsection{\LaTeX\ is fun}
+Happy \TeX'ing!\\
+
+
+{\color{ForestGreen}\texttt{\textbackslash Left\textbackslash Goofy\textbackslash Bart(1,1.6)(.85,1.6)}}
+
+\Left\Goofy\Bart(1,1.6)(.85,1.6)
+
+\appendix
+\section{Examples of the beauty of \LaTeX\ typesetting}
+
+\subsection{Bible de Genève 1564}
+\includegraphics[width=5in]{geneve_1564.png}\\
+\url{https://github.com/raphink/geneve_1564}
+
+\subsection{Aphra Behn: A Pindarick on Charles II}
+\includegraphics[width=5.25in]{behn-pindarick-charles-ii-first-page.pdf}\\
+\url{https://gitlab.com/emacsomancer/tex-poems/tree/master/Behn/Pindarick-on-death-of-Charles-II}
+
+\subsection{Quacksalver's advertisement for ``oxygenised air''}
+\includegraphics[width=5.25in]{Persecution_of_New_Ideas.pdf}\\
+\url{https://github.com/logological/blood}
+
+\subsection{Ramāya\textipa{\d{n}}a excerpt}
+\begin{tcolorbox}[width=\textwidth+.5in]
+  {\includegraphics[page=1,scale=0.8]{ramayana-plainlatex.pdf}}
+\end{tcolorbox}
+\begin{tcolorbox}[width=\textwidth+.5in]
+  {\includegraphics[page=2,scale=0.8]{ramayana-plainlatex.pdf}}
+\end{tcolorbox}
+\begin{tcolorbox}[width=\textwidth+.5in]
+  {\includegraphics[page=3,scale=0.8]{ramayana-plainlatex.pdf}}
+\end{tcolorbox}
+\url{https://tex.stackexchange.com/a/369211/1135}
+\end{document} % LaTeX won't process anything after this
