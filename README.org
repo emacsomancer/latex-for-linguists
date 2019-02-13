@@ -1,0 +1,6 @@
+#+TITLE: LaTeX for Linguists
+#+AUTHOR: Benjamin Slade
+
+This is a draft of a basic "LaTeX in half an hour" guide 
+aimed at linguists, but most of the material is probably
+relevant for non-linguists as well.
