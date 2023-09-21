@@ -27,7 +27,9 @@
 \usepackage{fancyvrb}  % for boxed code examples
 \usepackage{wrapfig}   % for wrapping text around images
 \usepackage{forest}    % for advanced trees
-\usepackage{simpsons}  % Simpsons
+% \usepackage{simpsons}  % Simpsons [not working well]
+\usepackage{tikz}
+\usetikzlibrary{tikzlings}  % drawing little animals
 \usepackage{tipa}      % diacritics
 \usepackage{tcolorbox} % fancier boxes
 \usepackage{hologo}    % for XeLaTeX logo
@@ -43,7 +45,7 @@
 
 \title{\sffamily\bfseries Basic \LaTeX\ for Linguists} % title
 \author{\sffamily\Large\href{https://slade.jnanam.net}{Benjamin Slade}} % author
-\date{v0.1}
+\date{v0.11}
 % leave out \date{..} and let TeX  automagically generate the date, or use \date{30 January 1970} to manually-specify a date
 
 % let's make our own command here:
@@ -61,7 +63,7 @@
 \maketitle
 
 \section{Introduction}
-A working draft of a quick ``\LaTeX-in-half-an-hour'' guide for linguists.
+A working draft of a quick ``\LaTeX-in-half-an-hour'' guide for linguists.\footnote{Find the original \TeX\ source file at: \url{https://gitlab.com/emacsomancer/latex-for-linguists/-/blob/master/basic-for-linguists.tex}.}
 
 \section{Install \LaTeX, download a \LaTeX\ editor}
 Install \TeX Live (free, open-source software) following the instructions appropriate for your operating system: \url{https://www.tug.org/texlive/quickinstall.html}.\\
@@ -100,9 +102,9 @@ The basic \LaTeX document consists of a \textsc{preamble} followed by the actual
 \usepackage{linguex}        % example package for lazy linguists
 \usepackage{qtree}          % for easy basic trees
 \usepackage{forest}         % for advanced trees
+\usepackage{tikzlings}      % drawing little animals
 \usepackage{stmaryrd}       % add semantic evaluation brackets
 \usepackage{graphicx}       % include images
-\usepackage{simpsons}       % Simpsons characters
 % some mathematics packages
 \usepackage{amsmath,amsthm,amscd}
 \usepackage{amssymb}
@@ -541,9 +543,41 @@ For special phonetic (e.g.\@ IPA) characters, have a look at the \href{http://ww
 Happy \TeX'ing!\\
 
 
-{\color{ForestGreen}\texttt{\textbackslash Left\textbackslash Goofy\textbackslash Bart(1,1.6)(.85,1.6)}}
+\begin{tikzpicture}
+  \coati[rotatehead=15,3D,cake=violet]
+  \thing[tophat,scale=1.5,yshift=-0.6cm,xshift=-0.05cm,3D]
+\end{tikzpicture}
+    \hspace{2em}
+\begin{tikzpicture}
+  \owl[3D,crown,
+  signpost={\TeX!},
+signcolour= brown!50!black,
+signback=green!40!black]
+  \end{tikzpicture}
+    \hspace{2em}  
+  \begin{tikzpicture}
+    \cat[3D,witch=gray,crystalball=cyan]
+\end{tikzpicture} 
+% {\color{ForestGreen}\texttt{\textbackslash Left\textbackslash Goofy\textbackslash Bart(1,1.6)(.85,1.6)}}
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
 
-\Left\Goofy\Bart(1,1.6)(.85,1.6)
+% \Left\Goofy\Bart(1,1.6)(.85,1.6)
 
 \appendix
 \section{Examples of the beauty of \LaTeX\ typesetting}
