@@ -6,7 +6,7 @@ aimed at linguists, but most of the material is probably
 relevant for non-linguists as well.
 
 * Instructions
-- Start by opening up the [[https://github.com/emacsomancer/latex-for-linguists/blob/master/basic-for-linguists.tex][main .tex file]] in a LaTeX editor (e.g. Overleaf).
+- Start by opening up the [[https://raw.githubusercontent.com/emacsomancer/latex-for-linguists/refs/heads/master/basic-for-linguists.tex][main .tex file]] in a LaTeX editor (e.g., [[https://www.overleaf.com/][Overleaf]], [[https://www.xm1math.net/texmaker/][Texmaker]], [[https://www.texstudio.org/][TeXstudio]], [[https://www.gnu.org/software/auctex/][AUCTeX[Emacs]​]]).
 
 * Preview
 - view the PDF output of the guide here: [[./basic-for-linguists.pdf]]
