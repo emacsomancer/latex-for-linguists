@@ -15,3 +15,5 @@ relevant for non-linguists as well.
 
 * Notes
 - migrated from: [[https://gitlab.com/emacsomancer/latex-for-linguists][https://gitlab.com/emacsomancer/latex-for-linguists]]
+- for more resources see:
+  - [[https://en.wikibooks.org/w/index.php?title=LaTeX/Linguistics][Wikibooks "LaTeX/Linguistics"]]
