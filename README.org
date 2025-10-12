@@ -4,3 +4,14 @@
 This is a draft of a basic "LaTeX in half an hour" guide 
 aimed at linguists, but most of the material is probably
 relevant for non-linguists as well.
+
+* Instructions
+- Start by opening up the [[https://github.com/emacsomancer/latex-for-linguists/blob/master/basic-for-linguists.tex][main .tex file]] in a LaTeX editor (e.g. Overleaf).
+
+* Preview
+- view the PDF output of the guide here: [[./basic-for-linguists.pdf]]
+  [[./preview.png]]
+
+
+* Notes
+- migrated from: [[https://gitlab.com/emacsomancer/latex-for-linguists][https://gitlab.com/emacsomancer/latex-for-linguists]]
