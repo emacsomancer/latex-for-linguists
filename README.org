@@ -17,3 +17,4 @@ relevant for non-linguists as well.
 - migrated from: [[https://gitlab.com/emacsomancer/latex-for-linguists][https://gitlab.com/emacsomancer/latex-for-linguists]]
 - for more resources see:
   - [[https://en.wikibooks.org/w/index.php?title=LaTeX/Linguistics][Wikibooks "LaTeX/Linguistics"]]
+  - [[https://web.archive.org/web/20230327004944/https://www1.essex.ac.uk/linguistics/external/clmt/latex4ling/][LaTeX for Linguistics homepage at the University of Essex]]
