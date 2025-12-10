@@ -8,6 +8,9 @@
 % PREAMBLE - this specifies various options and loads packages
 \documentclass{article}
 
+% use Latin Modern rather than Computer Modern
+\usepackage{fontspec}
+
 % Using sans serif in headings
 \usepackage{sectsty}
 \allsectionsfont{\normalfont\sffamily\bfseries} 
@@ -18,7 +21,7 @@
 \usepackage{stmaryrd}  % adds the evaluation brackets for semantics
 \usepackage{graphicx}  % include images
 \usepackage[dvipsnames]{xcolor} % extra colours
-\usepackage[colorlinks   = true, %Colours links instead of ugly boxes
+\usepackage[pdfusetitle,pdfcreator={GNU Emacs 30.2 (build 2, Lucid/Athena-toolkit (X toolkit), no scroll bars, cairo version 1.18.4) with AUCTeX 14.1.0 on Guix System (Linux 6.17.10 [\#1 SMP PREEMPT＿DYNAMIC 1])},colorlinks   = true, %Colours links instead of ugly boxes
   urlcolor     = blue, %Colour for external hyperlinks
   linkcolor    = black, %Colour of internal links
   citecolor   = white, %Colour of citations
@@ -27,9 +30,7 @@
 \usepackage{fancyvrb}  % for boxed code examples
 \usepackage{wrapfig}   % for wrapping text around images
 \usepackage{forest}    % for advanced trees
-% \usepackage{simpsons}  % Simpsons [not working well]
-\usepackage{tikz}
-\usetikzlibrary{tikzlings}  % drawing little animals
+% \usepackage{simpsons}  % Simpsons
 \usepackage{tipa}      % diacritics
 \usepackage{tcolorbox} % fancier boxes
 \usepackage{hologo}    % for XeLaTeX logo
@@ -45,7 +46,7 @@
 
 \title{\sffamily\bfseries Basic \LaTeX\ for Linguists} % title
 \author{\sffamily\Large\href{https://slade.jnanam.net}{Benjamin Slade}} % author
-\date{v0.11}
+\date{v0.1}
 % leave out \date{..} and let TeX  automagically generate the date, or use \date{30 January 1970} to manually-specify a date
 
 % let's make our own command here:
@@ -53,6 +54,7 @@
 \newcommand{\fancydenotes}[2][]{\ensuremath{\llbracket\textrm{#2}\rrbracket^{#1}}}
 
 \setlength\parindent{0pt} % I'm disabling auto-indentation for the purposes of this example text, but you won't generally want to do this
+
 
 % END PREAMBLE  - end of specifications, options...
 
@@ -63,14 +65,14 @@
 \maketitle
 
 \section{Introduction}
-A working draft of a quick ``\LaTeX-in-half-an-hour'' guide for linguists.\footnote{Find the original \TeX\ source file at: \url{https://gitlab.com/emacsomancer/latex-for-linguists/-/blob/master/basic-for-linguists.tex}.}
+A working draft of a quick ``\LaTeX-in-half-an-hour'' guide for linguists.
 
 \section{Install \LaTeX, download a \LaTeX\ editor}
 Install \TeX Live (free, open-source software) following the instructions appropriate for your operating system: \url{https://www.tug.org/texlive/quickinstall.html}.\\
 
 There are heaps of \LaTeX\ editors, as you can see from, for instance, \url{https://tex.stackexchange.com/questions/339/latex-editors-ides} or \url{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}.\\
 
-Lots of high-powered text editors have \LaTeX\ plugins, including Emacs, Vim, Kile, Visual Studio Code, Gedit, etc.\@\\
+Lots of high-powered text editors have \LaTeX\ plugins, including Emacs, Vim, Visual Studio Code, etc.\@\\
 
 I like using \href{https://en.wikipedia.org/wiki/Emacs}{Emacs} with the
 \href{https://en.wikipedia.org/wiki/AUCTeX}{AUCTeX} package, but these
@@ -80,9 +82,9 @@ adding yet another learning curve that the one you already have with
 good, at least to begin with:
 
 \begin{itemize}
-\item \href{https://www.texstudio.org/}{TeXstudio}: \url{https://www.texstudio.org}
-\item \href{https://www.xm1math.net/texmaker/}{TeXmaker}: \url{https://www.xm1math.net/texmaker}
-\item \href{https://www.tug.org/texworks/}{TeXworks}: \url{https://www.tug.org/texworks}
+\item \href{http://www.texstudio.org/}{TeXstudio}: \url{http://www.texstudio.org}
+\item \href{http://www.xm1math.net/texmaker/}{TeXmaker}: \url{http://www.xm1math.net/texmaker}
+\item \href{http://www.tug.org/texworks/}{TeXworks}: \url{http://www.tug.org/texworks}
 \end{itemize}
 
 All of these are free (no cost) and open-source (as are the high-powered text editors mentioned above). These will make producing \LaTeX\ documents much easier, though in principle you could hand-type \LaTeX\ code anywhere.\\
@@ -102,9 +104,9 @@ The basic \LaTeX document consists of a \textsc{preamble} followed by the actual
 \usepackage{linguex}        % example package for lazy linguists
 \usepackage{qtree}          % for easy basic trees
 \usepackage{forest}         % for advanced trees
-\usepackage{tikzlings}      % drawing little animals
 \usepackage{stmaryrd}       % add semantic evaluation brackets
 \usepackage{graphicx}       % include images
+% \usepackage{simpsons}       % Simpsons characters
 % some mathematics packages
 \usepackage{amsmath,amsthm,amscd}
 \usepackage{amssymb}
@@ -169,7 +171,6 @@ produces:\\
 \textsc{some smallcaps text}
 \end{minipage}}\\
 
-
 Your \LaTeX\ editor should have these formatting things as commands bound
 to shortcut keys, just like in a word-processor, so if you select some text
 and hit \textbf{Ctrl-B} your editor should wrap \texttt{\textbackslash
@@ -195,7 +196,7 @@ textbf\{...\}} around the selected text.\footnote{The
 
 Once you get the basics of \LaTeX\ down, then you can just worry about the content and let \LaTeX\ worry about making it \href{https://tex.stackexchange.com/questions/1319/showcase-of-beautiful-typography-done-in-tex-friends}{look beautiful}.
 
-% \pagebreak
+\pagebreak
 \section{Basic sectioning and footnotes}
 \begin{Verbatim}[frame=single,rulecolor=\color{ForestGreen},formatcom=\color{ForestGreen}]
   \section{My first main section}
@@ -534,7 +535,7 @@ editor) can be extremely helpful to your productivity. \LaTeX\
 taking care of formatting and letting you concentrate on the content is
 great, but the power of a good, customisable text editor is also an often
 under-rated boon. (And you'll free yourself from a whole class of certain
-worries produced by word-processors, including the one pointed out in the \href{https://xkcd.com/2109/}{xkcd comic} seen on the right.) \hfill \leftpointright
+worries produced by word-processors, including the one pointed out in the xkcd comic seen on the right.) \hfill \leftpointright
 
 \subsubsection{Other packages to explore}
 For special phonetic (e.g.\@ IPA) characters, have a look at the \href{http://www.l.u-tokyo.ac.jp/~fkr/tipa/tipaman.pdf}{\texttt{tipa} package}. However, just using \href{http://xml.web.cern.ch/XML/lgc2/xetexmain.pdf}{\hologo{XeLaTeX}} is probably a better choice in the long-term as it allows you to use any font installed on your computer with the aid of the \href{http://mirrors.ctan.org/macros/latex/contrib/fontspec/fontspec.pdf}{\texttt{fontspec} package}. There are a number of other linguistics-related packages, including the \href{http://mirrors.ctan.org/macros/latex/contrib/ot-tableau/ot-tableau.pdf}{\texttt{ot-tableau} package} for Optimality Theory tableaux. Here is a listing of CTAN packages with ``linguistics'' as a keyword: \url{https://ctan.org/topic/linguistic}.
@@ -543,39 +544,7 @@ For special phonetic (e.g.\@ IPA) characters, have a look at the \href{http://ww
 Happy \TeX'ing!\\
 
 
-\begin{tikzpicture}
-  \coati[rotatehead=15,3D,cake=violet]
-  \thing[tophat,scale=1.5,yshift=-0.6cm,xshift=-0.05cm,3D]
-\end{tikzpicture}
-    \hspace{2em}
-\begin{tikzpicture}
-  \owl[3D,crown,
-  signpost={\TeX!},
-signcolour= brown!50!black,
-signback=green!40!black]
-  \end{tikzpicture}
-    \hspace{2em}  
-  \begin{tikzpicture}
-    \cat[3D,witch=gray,crystalball=cyan]
-\end{tikzpicture} 
 % {\color{ForestGreen}\texttt{\textbackslash Left\textbackslash Goofy\textbackslash Bart(1,1.6)(.85,1.6)}}
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                   
 
 % \Left\Goofy\Bart(1,1.6)(.85,1.6)
 
